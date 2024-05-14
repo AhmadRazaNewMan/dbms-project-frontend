@@ -12,6 +12,7 @@ const TechnologyServices = () => {
           />
 
           <span>COMPUTING</span>
+          <h2>Branch changes</h2>
         </div>
       </div>
     </div>
