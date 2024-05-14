@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar'
 import MainImage from './Components/MainImage'
 import PrincipalMessage from './Components/PrincipalMessage'
 import TechnologyServices from './Components/TechnologyServices'
+import Accordion from './Components/Accordion'
 
 const home = () => {
   return (
@@ -12,6 +13,7 @@ const home = () => {
         <MainImage/>
         <PrincipalMessage/>
         <TechnologyServices/>
+        {/* <Accordion/> */}
       
     </div>
   )
