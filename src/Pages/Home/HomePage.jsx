@@ -14,6 +14,7 @@ const home = () => {
         <MainImage/>
         <PrincipalMessage/>
         <TechnologyServices/>
+        <AccordionUsage/>
         
       
     </div>
