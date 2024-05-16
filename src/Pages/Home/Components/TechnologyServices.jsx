@@ -2,7 +2,7 @@ import React from "react";
 
 const TechnologyServices = () => {
   return (
-    <div className="text-white mx-4 md:mx-20">
+    <div className="text-white mt-40 bg-yellow-600 ">
       <div className="flex">
         <div>
           <img
@@ -12,7 +12,8 @@ const TechnologyServices = () => {
           />
 
           <span>COMPUTING</span>
-        </div>
+        
+         </div>
       </div>
     </div>
   );

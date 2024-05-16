@@ -3,7 +3,7 @@ import React from "react";
 const PrincipalMessage = () => {
   return (
     <div className="text-white ">
-      <div className="w-full my-7 py-5  bg-yellow-600 rounded shadow-lg">
+      <div className="w-full my-7 py-5  bg-yellow-600 rounded ">
         <h1 className="text-3xl text-center ">MESSAGE FROM THE CHARIMAN</h1>
       </div>
       <div className="flex flex-col-reverse md:flex-row gap-4 mx-4 md:mx-20">
@@ -34,7 +34,7 @@ const PrincipalMessage = () => {
           <img
             src="https://itu.edu.pk/wp-content/uploads/2023/03/IMG_1301-2A-Official.jpg"
             alt=""
-            className="w-full rounded-xl"
+            className="w-full rounded-"
           />
         </div>
       </div>
