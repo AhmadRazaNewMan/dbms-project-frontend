@@ -21,7 +21,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
-
+import {useNavigate} from 'react-router-dom'
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -90,6 +90,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
+  const navigate=useNavigate();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -161,7 +162,7 @@ export default function MiniDrawer() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/gallery')}>
             <ListItemButton
               sx={{
                 minHeight: 48,

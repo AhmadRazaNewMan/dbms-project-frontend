@@ -15,6 +15,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='dashboard' element={<MiniDrawer/>}/>
       </Routes>
+      
    </Router>
 
    

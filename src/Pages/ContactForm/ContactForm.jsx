@@ -3,6 +3,7 @@ import React from 'react';
 const ContactForm = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      
       <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
         <form>
           <label htmlFor="fullname" className="block mb-2">Full Name</label>
