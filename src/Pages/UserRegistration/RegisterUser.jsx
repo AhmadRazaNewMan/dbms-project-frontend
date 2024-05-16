@@ -69,10 +69,12 @@ const RegisterUser = () => {
             Register
           </button>
         </form>
+        <div className="mt-4 text-center">
+          <p>Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a></p>
+        </div>
       </div>
     </div>
   );
 }
 
 export default RegisterUser;
-

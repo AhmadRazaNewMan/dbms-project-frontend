@@ -56,6 +56,9 @@ const LoginUser = () => {
             Login
           </button>
         </form>
+        <div className="mt-4 text-center">
+          <p>Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a></p>
+        </div>
       </div>
     </div>
   );
