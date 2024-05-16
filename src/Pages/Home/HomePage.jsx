@@ -3,7 +3,6 @@ import Navbar from './Components/Navbar'
 import MainImage from './Components/MainImage'
 import PrincipalMessage from './Components/PrincipalMessage'
 import TechnologyServices from './Components/TechnologyServices'
-import Footer from './Components/Footer'
 
 const home = () => {
   return (
@@ -12,8 +11,7 @@ const home = () => {
         <Navbar/>
         <MainImage/>
         <PrincipalMessage/>
-        {/* <TechnologyServices/> */}
-        <Footer/>
+        <TechnologyServices/>
       
     </div>
   )
