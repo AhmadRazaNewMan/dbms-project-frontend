@@ -6,6 +6,7 @@ import MiniDrawer from "../src/Pages/Dashboard/MiniDrawer"
 import {BrowserRouter as Router ,Route,Routes} from 'react-router-dom'
 import RegistractionPage from './Pages/UserRegistration/RegisterUser'
 import LoginUser from './Pages/UserRegistration/LoginUser'
+import AdminNotification from './Pages/NotificationSection/AdminNotification'
 
 
 
@@ -22,7 +23,8 @@ function App() {
       {/* </Routes> */}
    {/* </Router> */}
    {/* <RegistractionPage/> */}
-   <LoginUser/>
+   {/* <LoginUser/> */}
+   <AdminNotification/>
    
 
 
