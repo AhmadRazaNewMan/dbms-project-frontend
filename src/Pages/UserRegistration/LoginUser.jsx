@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-
+import LinearIndeterminate from './LinearIndeterminate';
+import {loginUser} from '../../Services/User_Services/User'
+import {useNavigate} from 'react-router-dom'
 const LoginUser = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    Email: '',
+    Password: ''
   });
 
   const handleChange = (e) => {
@@ -14,23 +18,34 @@ const LoginUser = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    
-    console.log(formData);
+    try {
+      const response = await loginUser(formData);
+      if(!response.succuss===true){
+        throw new Error(response.error);
+      }
+      alert("User Logged In Successfully")
+      navigate('/profile')
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert("Something went wrong!")
+      
+    }
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
         <h2 className="text-2xl mb-4">Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} method='POST'>
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">Email</label>
             <input
               type="email"
               id="email"
-              name="email"
+              name="Email"
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
@@ -42,7 +57,7 @@ const LoginUser = () => {
             <input
               type="password"
               id="password"
-              name="password"
+              name="Password"
               placeholder="Enter your password"
               value={formData.password}
               onChange={handleChange}
