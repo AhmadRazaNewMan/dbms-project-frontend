@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import events from './event.json';
 
 const EventDetail = () => {
+  
   const { id } = useParams();
   const event = events[id];
 
@@ -24,7 +25,7 @@ const EventDetail = () => {
           <button
             onClick={() => window.history.back()}
             className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
+          >'""'
             Go Back
           </button>
         </div>
