@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NotificationSlider from './Pages/NotificationSection/NotificationSlider';
 import SingleNotificationPage from './Pages/NotificationSection/SingleNotificationPage';
 import UserGallerySection from './Pages/Gallery/UserGallerySection';
+import EventDetail from './Pages/Gallery/EventDetail';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<NotificationSlider />} />
         <Route path='notification' element={<SingleNotificationPage />} />
         <Route path='/gallery' element = {<UserGallerySection/>}/>
+        <Route path="/event/:id" element={<EventDetail />} />
         {/* <Route path='dashboard' element={<MiniDrawer/>}/> */}
         {/* <Route path='register' element={<register/>}/> */}
       </Routes>
