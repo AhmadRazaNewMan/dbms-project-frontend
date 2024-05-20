@@ -3,7 +3,7 @@ import LinearIndeterminate from './LinearIndeterminate';
 import {loginUser} from '../../Services/User_Services/User'
 import {useNavigate} from 'react-router-dom'
 const LoginUser = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Email: '',

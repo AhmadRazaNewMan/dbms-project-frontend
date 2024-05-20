@@ -17,7 +17,7 @@ function UserProfile() {
                 setIsLogin(true)
             }
             else{
-                // setIsLogin(false)
+                setIsLogin(true)
             }
         })
     }, [location.pathname])
