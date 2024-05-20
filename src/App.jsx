@@ -9,6 +9,8 @@ import RecipeReviewCard from "./Pages/CardsComponent/RecipeReviewCard";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import AdminLogin from "./Pages/AdminLogin/AdminLogin";
 import Unauth from "./Pages/UnAuthorized/Unauth";
+import UserGallerySection from "./Pages/Gallery/UserGallerySection";
+import NotificationSlider from "./Pages/NotificationSection/NotificationSlider";
 function App() {
   return (
       <Router> 
@@ -25,6 +27,8 @@ function App() {
           <Route path="sendmail" element={<RecipeReviewCard/>} />
         </Route>
         <Route path="unauthorized" element={<Unauth />} />
+        <Route path="gallery" element={<UserGallerySection/>}/>
+        <Route path="notification" element={<NotificationSlider/>}/>
       </Routes>
     </Router>
   );

@@ -21,13 +21,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
-<<<<<<< HEAD
-import {useNavigate, Outlet,useLocation} from 'react-router-dom'
-=======
 import { useNavigate,Outlet,useLocation } from "react-router-dom";
 import { useState,useEffect } from "react";
 
->>>>>>> ahmadbranch
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -100,8 +96,6 @@ export default function MiniDrawer() {
   const location=useLocation();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const navigate=useNavigate();
-  const location=useLocation();
   const [path,setPath]=useState(location.pathname);
   const [isLogin,setIsLogin]=useState(false);
   console.log(path);
@@ -165,11 +159,7 @@ export default function MiniDrawer() {
 
         {/* All item will be here  */}
         <List>
-<<<<<<< HEAD
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard')}>
-=======
           <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('user')}>
->>>>>>> ahmadbranch
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -288,30 +278,6 @@ export default function MiniDrawer() {
 
         <Divider />
       </Drawer>
-<<<<<<< HEAD
-      {!isAddNotificationRoute && (
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
-          <Typography paragraph>
-            Welcome to the Admin Dashboard, your central command center for
-            managing all aspects of your platform with ease and efficiency. From
-            overseeing user activity and analyzing key metrics to posting
-            notifications and managing student accounts, this dashboard puts you
-            in control. Effortlessly communicate with your team, curate content,
-            and streamline workflows—all within a sleek and intuitive interface.
-            With powerful moderation tools and real-time insights, drive growth
-            and success with confidence. Welcome to a new era of platform
-            management.
-          </Typography>
-        </Box>
-        
-      )}
-                        <div className="w-full">
-                        <Outlet /> 
-
-                        </div>
-
-=======
       {path==='/dashboard' &&
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
@@ -332,7 +298,6 @@ export default function MiniDrawer() {
       <Outlet/>
 
       </div>
->>>>>>> ahmadbranch
     </Box>
   );
 }
