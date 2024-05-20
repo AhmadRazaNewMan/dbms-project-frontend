@@ -21,6 +21,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate,Outlet,useLocation } from "react-router-dom";
 import { useState,useEffect } from "react";
 
@@ -97,7 +98,7 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [path,setPath]=useState(location.pathname);
-  const [isLogin,setIsLogin]=useState(false);
+  const [isLogin,setIsLogin]=useState(true);
   console.log(path);
   useEffect(()=>{
    if(!isLogin) navigate('/login');
@@ -159,7 +160,7 @@ export default function MiniDrawer() {
 
         {/* All item will be here  */}
         <List>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('user')}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard')}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -183,7 +184,7 @@ export default function MiniDrawer() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard/contact')}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard/addnotification')}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -206,7 +207,7 @@ export default function MiniDrawer() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard/addgallery')}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -272,6 +273,27 @@ export default function MiniDrawer() {
                 <SettingsIcon />
               </ListItemIcon>
               <ListItemText primary="Setting" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding sx={{ display: "block" }} >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         </List>

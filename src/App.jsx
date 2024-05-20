@@ -11,6 +11,9 @@ import AdminLogin from "./Pages/AdminLogin/AdminLogin";
 import Unauth from "./Pages/UnAuthorized/Unauth";
 import UserGallerySection from "./Pages/Gallery/UserGallerySection";
 import NotificationSlider from "./Pages/NotificationSection/NotificationSlider";
+import SingleNotificationPage from './Pages/NotificationSection/SingleNotificationPage'
+import AdminNotification from "./Pages/NotificationSection/AdminNotification";
+import AddtoGallery from "./Pages/Gallery/AddtoGallery";
 function App() {
   return (
       <Router> 
@@ -18,6 +21,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="dashboard/" element={<MiniDrawer />}>
           <Route path="user" element={<RecipeReviewCard />} />
+          <Route path="addnotification" element={<AdminNotification/>}/>
+          <Route path="addgallery" element={<AddtoGallery/>}/>
         </Route>
         <Route path="card" element={<RecipeReviewCard />} />
         <Route path="signup" element={<RegisterUser />} />
@@ -29,6 +34,7 @@ function App() {
         <Route path="unauthorized" element={<Unauth />} />
         <Route path="gallery" element={<UserGallerySection/>}/>
         <Route path="notification" element={<NotificationSlider/>}/>
+        <Route path="notification/:title" element={<SingleNotificationPage/>}/>
       </Routes>
     </Router>
   );

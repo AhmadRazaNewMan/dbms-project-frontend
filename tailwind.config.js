@@ -4,8 +4,13 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
+   theme: {
+    extend: {
+      colors: {
+        customGold: 'rgba(202, 138, 4, var(--tw-bg-opacity))',
+      },
+    },
   },
+  variants: {},
   plugins: [],
 }

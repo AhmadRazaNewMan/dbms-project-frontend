@@ -7,7 +7,7 @@ const NotificationSlider = () => {
 
   
   const handleSlideClick = (slide) => {
-    navigate('/notification', { state: slide });
+    navigate(`notification/${slide.title}`, { state: slide });
   };
 
  
