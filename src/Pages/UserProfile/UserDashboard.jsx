@@ -21,13 +21,10 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
-<<<<<<< HEAD
-import {useNavigate, Outlet,useLocation} from 'react-router-dom'
-=======
-import { useNavigate,Outlet,useLocation } from "react-router-dom";
-import { useState,useEffect } from "react";
-
->>>>>>> ahmadbranch
+import LogoutIcon from "@mui/icons-material/Logout";
+import EmailIcon from "@mui/icons-material/Email";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { logoutUser } from "../../Services/User_Services/User";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -95,20 +92,24 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
-  const navigate=useNavigate();
-  const location=useLocation();
+export default function UserDashboard({path,User}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const navigate=useNavigate();
-  const location=useLocation();
-  const [path,setPath]=useState(location.pathname);
-  const [isLogin,setIsLogin]=useState(false);
-  console.log(path);
-  useEffect(()=>{
-   if(!isLogin) navigate('/login');
-   setPath(location.pathname);
-  },[isLogin,location.pathname])
+  const navigate = useNavigate();
+
+  const Logout = async () => {
+    try {
+      const response = await logoutUser();
+      if (response.succuss === true) {
+        alert("User Logged Out Successfully");
+        navigate("/");
+      } else {
+        throw new Error(response.error);
+      }
+    } catch (error) {
+      alert("Something went wrong!");
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -117,19 +118,8 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const isAddNotificationRoute = location.pathname === "/dashboard/contact";
 
-
-
-  if(!isLogin){
-    return (
-      <div className="">
-      <h1 className="text-white p-10 text-center  bg-orange-500 text-3xl">Login First</h1>
-      </div>
-    )
-  }
-
-  if(isLogin) return (
+  return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -147,7 +137,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Wellcome to Dashboard
+            Wellcome to UserDashboard {User && User.Username}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -165,11 +155,11 @@ export default function MiniDrawer() {
 
         {/* All item will be here  */}
         <List>
-<<<<<<< HEAD
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard')}>
-=======
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('user')}>
->>>>>>> ahmadbranch
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => navigate("/")}
+          >
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -193,7 +183,7 @@ export default function MiniDrawer() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('/dashboard/contact')}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('sendmail')}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -208,15 +198,15 @@ export default function MiniDrawer() {
                   justifyContent: "center",
                 }}
               >
-                <NotificationsIcon />
+                <EmailIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Add Notification"
+                primary="Email to Chairman"
                 sx={{ opacity: open ? 1 : 0 }}
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={Logout}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -231,65 +221,16 @@ export default function MiniDrawer() {
                   justifyContent: "center",
                 }}
               >
-                <CollectionsIcon />
+                <LogoutIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Add Gallery"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                <GroupIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="All registered Students"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                <SettingsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Setting" sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         </List>
 
         <Divider />
       </Drawer>
-<<<<<<< HEAD
-      {!isAddNotificationRoute && (
+      {path === "/profile" && (
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
           <Typography paragraph>
@@ -304,35 +245,10 @@ export default function MiniDrawer() {
             management.
           </Typography>
         </Box>
-        
       )}
-                        <div className="w-full">
-                        <Outlet /> 
-
-                        </div>
-
-=======
-      {path==='/dashboard' &&
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Welcome to the Admin Dashboard, your central command center for
-          managing all aspects of your platform with ease and efficiency. From
-          overseeing user activity and analyzing key metrics to posting
-          notifications and managing student accounts, this dashboard puts you
-          in control. Effortlessly communicate with your team, curate content,
-          and streamline workflows—all within a sleek and intuitive interface.
-          With powerful moderation tools and real-time insights, drive growth
-          and success with confidence. Welcome to a new era of platform
-          management.
-        </Typography>
-         </Box>}
-
       <div className="w-full py-10">
-      <Outlet/>
-
+        <Outlet />
       </div>
->>>>>>> ahmadbranch
     </Box>
   );
 }

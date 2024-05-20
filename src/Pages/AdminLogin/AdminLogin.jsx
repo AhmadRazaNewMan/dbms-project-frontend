@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import LinearIndeterminate from './LinearIndeterminate';
 import {loginUser} from '../../Services/User_Services/User'
+import {loginAdmin} from '../../Services/Admin_services/Admin'
 import {useNavigate} from 'react-router-dom'
-const LoginUser = () => {
-  const [isLoading, setIsLoading] = useState(true);
+import LinearIndeterminate from '../UserRegistration/LinearIndeterminate';
+const AdminLogin = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Email: '',
@@ -20,8 +21,9 @@ const LoginUser = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    isLoading(true)
     try {
-      const response = await loginUser(formData);
+      const response = await loginAdmin(formData);
       if(!response.succuss===true){
         throw new Error(response.error);
       }
@@ -32,6 +34,8 @@ const LoginUser = () => {
       console.error('Error:', error);
       alert("Something went wrong!")
       
+    }finally {
+        setIsLoading(false)
     }
   };
 
@@ -66,17 +70,16 @@ const LoginUser = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
+            className="mb-1 w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
           >
-            Login
+            {isLoading ? "Please wait... ": "Login"}
           </button>
+          {isLoading && <LinearIndeterminate className=''/>}
+
         </form>
-        <div className="mt-4 text-center">
-          <p>Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a></p>
-        </div>
       </div>
     </div>
   );
 }
 
-export default LoginUser;
+export default AdminLogin;

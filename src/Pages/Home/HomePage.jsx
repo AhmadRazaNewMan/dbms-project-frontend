@@ -12,6 +12,7 @@ const Home = () => {
         <Navbar/>
         <MainImage/>
         <PrincipalMessage/>
+        {/* <TechnologyServices/> */}
         <Footer/>
       
     </div>
