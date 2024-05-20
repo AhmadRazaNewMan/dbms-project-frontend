@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const NotificationSlider = () => {
   const navigate = useNavigate();
 
-  // Function to handle slide click and navigate to the notification page
+  
   const handleSlideClick = (slide) => {
     navigate('/notification', { state: slide });
   };
 
-  // Function to create slide objects to avoid repetition
+ 
   const createSlide = (title, description, image) => ({
     image,
     title,
@@ -18,7 +18,7 @@ const NotificationSlider = () => {
     clickEvent: () => handleSlideClick({ title, description, image }),
   });
 
-  // Array of slides
+  
   const slides = [
     createSlide("Title 1", "Description 1", "https://picsum.photos/200/300?random=1"),
     createSlide("Title 2", "Description 2", "https://picsum.photos/200/300?random=2"),
