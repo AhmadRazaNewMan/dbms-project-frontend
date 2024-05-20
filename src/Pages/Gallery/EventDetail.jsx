@@ -13,11 +13,11 @@ const EventDetail = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <img
           src={event.Images}
           alt={event["Event Title"]}
-          className="w-full h-64 object-cover"
+          className="w-full h-64 object-cover object-center"
         />
         <div className="p-4">
           <h1 className="text-2xl font-bold mb-4">{event["Event Title"]}</h1>

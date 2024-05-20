@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<NotificationSlider />} />
+        <Route path='/' element={<Home />} />
         <Route path='notification' element={<SingleNotificationPage />} />
         <Route path='/gallery' element = {<UserGallerySection/>}/>
         <Route path="/event/:id" element={<EventDetail />} />
