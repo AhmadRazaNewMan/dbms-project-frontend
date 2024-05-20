@@ -21,12 +21,11 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
-import LogoutIcon from '@mui/icons-material/Logout';
-import EmailIcon from '@mui/icons-material/Email';
-import { useNavigate } from "react-router-dom";
-import {logoutUser} from "../../Services/User_Services/User"
+import LogoutIcon from "@mui/icons-material/Logout";
+import EmailIcon from "@mui/icons-material/Email";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { logoutUser } from "../../Services/User_Services/User";
 const drawerWidth = 240;
-
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -93,24 +92,24 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function UserDashboard(User) {
+export default function UserDashboard({path,User}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-    const navigate=useNavigate();
+  const navigate = useNavigate();
 
-    const Logout=async()=>{
-        try {
-         const response=await logoutUser();
-         if(response.succuss===true){
-             alert("User Logged Out Successfully")
-             navigate('/')
-             }else{
-             throw new Error(response.error)
-         }
-        } catch (error) {
-              alert("Something went wrong!")
-        }
-     }
+  const Logout = async () => {
+    try {
+      const response = await logoutUser();
+      if (response.succuss === true) {
+        alert("User Logged Out Successfully");
+        navigate("/");
+      } else {
+        throw new Error(response.error);
+      }
+    } catch (error) {
+      alert("Something went wrong!");
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -156,7 +155,11 @@ export default function UserDashboard(User) {
 
         {/* All item will be here  */}
         <List>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>navigate('/') }>
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => navigate("/")}
+          >
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -180,7 +183,7 @@ export default function UserDashboard(User) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('sendmail')}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -220,34 +223,32 @@ export default function UserDashboard(User) {
               >
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Logout"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-
-         
-
-          
         </List>
 
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Welcome to the Admin Dashboard, your central command center for
-          managing all aspects of your platform with ease and efficiency. From
-          overseeing user activity and analyzing key metrics to posting
-          notifications and managing student accounts, this dashboard puts you
-          in control. Effortlessly communicate with your team, curate content,
-          and streamline workflows—all within a sleek and intuitive interface.
-          With powerful moderation tools and real-time insights, drive growth
-          and success with confidence. Welcome to a new era of platform
-          management.
-        </Typography>
-      </Box>
+      {path === "/profile" && (
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          <Typography paragraph>
+            Welcome to the Admin Dashboard, your central command center for
+            managing all aspects of your platform with ease and efficiency. From
+            overseeing user activity and analyzing key metrics to posting
+            notifications and managing student accounts, this dashboard puts you
+            in control. Effortlessly communicate with your team, curate content,
+            and streamline workflows—all within a sleek and intuitive interface.
+            With powerful moderation tools and real-time insights, drive growth
+            and success with confidence. Welcome to a new era of platform
+            management.
+          </Typography>
+        </Box>
+      )}
+      <div className="w-full py-10">
+        <Outlet />
+      </div>
     </Box>
   );
 }

@@ -20,16 +20,16 @@ export const registerAdmin = async (username, email, password) => {
 }
 
 // Login Admin
-export const loginAdmin = async (username, password) => {
+export const loginAdmin = async (user) => {
+    console.log('called')
+    console.log(user)
     try {
         const response = await axios.post(`${API_URL}/login`, {
-            Username: username,
-            Password: password
+            user
         });
         console.log(response);
         const { data } = response;
-        // Set the admin_token cookie in the browser
-        // document.cookie = `admin_token=${data.admin_token}`;
+       
         return data;
     } catch (error) {
         throw new Error('Failed to login admin');

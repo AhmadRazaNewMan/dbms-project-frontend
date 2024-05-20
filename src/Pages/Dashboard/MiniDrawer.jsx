@@ -21,6 +21,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
+import { useNavigate,Outlet,useLocation } from "react-router-dom";
+import { useState,useEffect } from "react";
 
 const drawerWidth = 240;
 
@@ -92,6 +94,15 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate=useNavigate();
+  const location=useLocation();
+  const [path,setPath]=useState(location.pathname);
+  const [isLogin,setIsLogin]=useState(false);
+  console.log(path);
+  useEffect(()=>{
+   if(!isLogin) navigate('/login');
+   setPath(location.pathname);
+  },[isLogin,location.pathname])
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -101,7 +112,16 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  return (
+
+  if(!isLogin){
+    return (
+      <div className="">
+      <h1 className="text-white p-10 text-center  bg-orange-500 text-3xl">Login First</h1>
+      </div>
+    )
+  }
+
+  if(isLogin) return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -137,7 +157,7 @@ export default function MiniDrawer() {
 
         {/* All item will be here  */}
         <List>
-          <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=> navigate('user')}>
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -256,6 +276,7 @@ export default function MiniDrawer() {
 
         <Divider />
       </Drawer>
+      {path==='/dashboard' &&
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Typography paragraph>
@@ -269,7 +290,12 @@ export default function MiniDrawer() {
           and success with confidence. Welcome to a new era of platform
           management.
         </Typography>
-      </Box>
+         </Box>}
+
+      <div className="w-full py-10">
+      <Outlet/>
+
+      </div>
     </Box>
   );
 }
