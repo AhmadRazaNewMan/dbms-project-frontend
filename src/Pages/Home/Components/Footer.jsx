@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <div className='bg-yellow-500'>
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-4 md:mx-20 bg-yellow-500 px-10 py-8 text-gray-600 rounded-lg shadow-xl">
@@ -52,9 +53,9 @@ const Footer = () => {
      
     </div>
     <div className='text-center w-full  border-2 border-black '>
-        <h1>© CS&IT UET Peshawar 2022-2023. All right reserved</h1>
-        <p>Developed by the Computer Cell Team: Armaghan Khan | Saqib Ullah | Wajid Khan</p>
-    </div>
+    <h2 className="text-gray-700 text-lg py-2">
+        © {currentYear} CS&IT UET Peshawar. All rights reserved.
+      </h2>    </div>
     
     </div>
   );

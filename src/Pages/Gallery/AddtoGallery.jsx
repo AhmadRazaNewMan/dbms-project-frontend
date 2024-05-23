@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import {addGallery} from '../../Services/Gallery_services/gallery'
+import { LinearProgress } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddtoGallery = () => {
+  const [isLoading,setloading]=useState(false);
   const [formData, setFormData] = useState({
     Caption: '',
     Description: '',
@@ -17,15 +22,25 @@ const AddtoGallery = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
 
-    // Implement form submission logic here
-    // Access image data using formData.file
-    console.log('Form data:', formData);
+   const newData=new FormData();
+    newData.append('Caption',formData.Caption);
+    newData.append('Description',formData.Description);
+    newData.append('file',formData.file);
+    try {
+      setloading(true);
+      const response = await addGallery(newData);
+     if(response.success===true)
+      toast("Gallery Added Succussfully!");
+    
+    } catch (error) {
+      toast("Failed to add",error);
 
-    // Send data (Caption, Description, and image) to your backend using an appropriate method
-    // (e.g., fetch, Axios)
+    }finally{
+      setloading(false);
+    }
   };
 
   return (
@@ -70,12 +85,14 @@ const AddtoGallery = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-customGold text-white rounded-md hover:bg- transition duration-200"
+            className="mb-2 w-full py-2 px-4 bg-customGold text-white rounded-md hover:bg-black transition duration-200"
           >
-            Add Gallery
+            {isLoading ? "Adding Gallery..." : "Add Gallery"}
           </button>
+          <LinearProgress style={{visibility: isLoading ? "visible" : "hidden"}} />
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -24,18 +24,17 @@ export const loginAdmin = async (user) => {
     console.log('called')
     console.log(user)
     try {
-        const response = await axios.post(`${API_URL}/login`, {
-            user
-        });
-        console.log(response);
+        const response = await axios.post(`${API_URL}/login`, 
+            user,
+            {withCredentials: true}
+        );
         const { data } = response;
-       
-        return data;
-    } catch (error) {
+        return data;   
+     } 
+        catch (error) {
         throw new Error('Failed to login admin');
     }
-};
-
+}
 // Update Admin
 export const updateAdmin = async (adminID, username, email, password) => {
     try {
@@ -52,3 +51,21 @@ export const updateAdmin = async (adminID, username, email, password) => {
         throw new Error('Failed to update admin');
     }
 };
+
+export const isLoggin=async()=>{
+    try {
+        const response = await axios.get(`${API_URL}/isloggin`, {withCredentials: true});
+        return response;
+    } catch (error) {
+        throw new Error('Failed to check login status');
+    }
+}
+
+export const Logout=async()=>{
+    try {
+        const response = await axios.get(`${API_URL}/logout`, {withCredentials: true});
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to logout');
+    }
+}

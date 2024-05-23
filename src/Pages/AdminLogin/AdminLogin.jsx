@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {loginUser} from '../../Services/User_Services/User'
 import {loginAdmin} from '../../Services/Admin_services/Admin'
 import {useNavigate} from 'react-router-dom'
 import LinearIndeterminate from '../UserRegistration/LinearIndeterminate';
@@ -21,14 +20,13 @@ const AdminLogin = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    isLoading(true)
+    setIsLoading(true)
     try {
       const response = await loginAdmin(formData);
-      if(!response.succuss===true){
+      if(response.succuss!==true){
         throw new Error(response.error);
       }
-      alert("User Logged In Successfully")
-      navigate('/profile')
+      navigate('/dashboard')
 
     } catch (error) {
       console.error('Error:', error);
@@ -51,7 +49,7 @@ const AdminLogin = () => {
               id="email"
               name="Email"
               placeholder="Enter your email"
-              value={formData.email}
+              value={formData.Email}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
             />
@@ -63,7 +61,7 @@ const AdminLogin = () => {
               id="password"
               name="Password"
               placeholder="Enter your password"
-              value={formData.password}
+              value={formData.Password}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
             />

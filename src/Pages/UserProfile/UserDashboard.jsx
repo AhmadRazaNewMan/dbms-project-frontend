@@ -25,6 +25,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import EmailIcon from "@mui/icons-material/Email";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { logoutUser } from "../../Services/User_Services/User";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -101,13 +103,12 @@ export default function UserDashboard({path,User}) {
     try {
       const response = await logoutUser();
       if (response.succuss === true) {
-        alert("User Logged Out Successfully");
         navigate("/");
       } else {
         throw new Error(response.error);
       }
     } catch (error) {
-      alert("Something went wrong!");
+      toast("Failed to logout! try again later.");
     }
   };
 
@@ -121,6 +122,7 @@ export default function UserDashboard({path,User}) {
 
   return (
     <Box sx={{ display: "flex" }}>
+      <ToastContainer />
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -137,7 +139,7 @@ export default function UserDashboard({path,User}) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Wellcome to UserDashboard {User && User.Username}
+            Wellcome  {User && User.Username}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -177,7 +179,7 @@ export default function UserDashboard({path,User}) {
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Dashboard"
+                primary="Home"
                 sx={{ opacity: open ? 1 : 0 }}
               />
             </ListItemButton>
