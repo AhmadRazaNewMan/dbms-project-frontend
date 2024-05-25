@@ -9,7 +9,7 @@ import "./Programs.css";
 const Programs = () => {
   return (
     <>
-      <h1 className="text-white text-center text-4xl p-3">Our Programms</h1>
+      <h1 className="text-white text-center text-4xl p-3 font-semibold">Our Programms</h1>
       <div className="Programs">
         <div className="program">
           <img

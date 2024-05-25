@@ -1,24 +1,32 @@
-import React from 'react'
-import Navbar from './Components/Navbar'
-import MainImage from './Components/MainImage'
-import PrincipalMessage from './Components/PrincipalMessage'
-import TechnologyServices from './Components/TechnologyServices'
-import Footer from './Components/Footer'
-import About from '../About/About'
-import Programs from '../OurProgramm/Programs'
+import React from "react";
+import Navbar from "./Components/Navbar";
+import MainImage from "./Components/MainImage";
+import PrincipalMessage from "./Components/PrincipalMessage";
+import TechnologyServices from "./Components/TechnologyServices";
+import Footer from "./Components/Footer";
+import About from "../About/About";
+import Programs from "../OurProgramm/Programs";
+import Testimonials from "../Testimonials/Testimonials";
 const Home = () => {
   return (
     <div>
-   
-        <Navbar/>
-        <MainImage/>
-        <PrincipalMessage/>
-        <About/>
-        <Programs/>
-        <Footer/>
+      <MainImage />
       
-    </div>
-  )
-}
+      <PrincipalMessage />
+      <hr />
+      <About />
+      <hr />
+      <div className="w-full py-6">
 
-export default Home
+        <Programs />
+        <hr className="text-2xl" />
+      </div>
+      <div className="w-full py-5">
+        <h1 className="text-white text-center text-4xl p-3 font-semibold">Students Reviews</h1>
+        <Testimonials />
+      </div>
+    </div>
+  );
+};
+
+export default Home;

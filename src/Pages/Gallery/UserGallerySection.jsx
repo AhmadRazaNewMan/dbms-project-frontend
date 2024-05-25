@@ -31,7 +31,7 @@ const UserGallerySection = () => {
 
   const handleShowMore = () => {
     setVisibleEvents((prevVisibleEvents) =>
-      Math.min(prevVisibleEvents + 8, gallerydata.length)
+      Math.min(prevVisibleEvents + 8, gallerydata?.length)
     );
   };
 
@@ -45,22 +45,22 @@ const UserGallerySection = () => {
         Wellcome to CS & IT Gallery Section
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-        {gallerydata.slice(0, visibleEvents).map((event, index) => (
+        {gallerydata?.slice(0, visibleEvents).map((event, index) => (
           <div
             key={index}
             className="gallery-item relative group cursor-pointer overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
             onClick={() => handleClick(index, event)}
           >
             <img
-              src={event.ImageURL}
+              src={event?.ImageURL}
               alt={event["Event Title"]}
               className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
               loading="lazy"
             />
             <div className="gallery-item-overlay absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-75 transition-opacity duration-300 flex items-end p-4">
               <div className="text-center text-white w-full">
-                <h2 className="text-xl font-semibold mb-2">{event.Caption}</h2>
-                <p className="text-sm mb-4">{event.Description}</p>
+                <h2 className="text-xl font-semibold mb-2">{event?.Caption}</h2>
+                <p className="text-sm mb-4">{event?.Description}</p>
                 <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors duration-300">
                   
                   {formatCreatedAtDate(event.createdAt)}
@@ -71,7 +71,7 @@ const UserGallerySection = () => {
         ))}
       </div>
       <div className="text-center mt-8 space-x-4">
-        {visibleEvents < gallerydata.length && (
+        {visibleEvents < gallerydata?.length && (
           <button
             onClick={handleShowMore}
             className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors duration-300"

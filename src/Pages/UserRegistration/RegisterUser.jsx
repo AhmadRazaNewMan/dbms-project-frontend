@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LinearIndeterminate from './LinearIndeterminate';
 import {RegesterUser} from '../../Services/User_Services/User'
+import { Link } from 'react-router-dom';
 const RegisterUser = () => {
 const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -90,7 +91,7 @@ const [isLoading, setIsLoading] = useState(false);
 
         </form>
         <div className="mt-4 text-center">
-          <p>Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a></p>
+          <p>Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login</Link></p>
         </div>
       </div>
     </div>

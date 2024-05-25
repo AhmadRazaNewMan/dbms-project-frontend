@@ -8,10 +8,8 @@ const menuItems = [
   { text: 'Notifications', link: '/notification', type: 'main' },
   { text: 'Gallery', link: '/gallery', type: 'main' },
   { text: "FAQ's", link: '/faq', type: 'main' },
-  { text: 'Login/Signup', link: '/login', type: 'main' },
-  { text: 'Dashboard', link: '/dashboard', type: 'main' },
+  { text: "Send Mail", link: '/profile/sendmail', type: 'main' },
   { text: 'Profile', link: '/profile', type: 'user' },
-  { text: 'Sign out', link: '/signout', type: 'user' },
 ];
 
 const Navbar = () => {
@@ -38,12 +36,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div>
-      <nav className="border-gray-200 dark:bg-gray-900" style={{ background: "#f7be1d" }}>
+    <div >
+      <nav className="border-gray-200 dark:bg-gray-900 " style={{ background: "#f7be1d" }}>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Link to='/' className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://res.cloudinary.com/devncode/image/upload/v1576589166/production_devncode/community/1576589156098.png" className="h-20" alt="Flowbite Logo" />
-          </a>
+          </Link>
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             {isLoggedIn ? (
               <>

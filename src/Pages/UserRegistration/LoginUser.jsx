@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LinearIndeterminate from './LinearIndeterminate';
 import {loginUser} from '../../Services/User_Services/User'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 const LoginUser = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ const LoginUser = () => {
           </button>
         </form>
         <div className="mt-4 text-center">
-          <p>Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a></p>
+          <p>Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline">Register</Link></p>
         </div>
       </div>
     </div>

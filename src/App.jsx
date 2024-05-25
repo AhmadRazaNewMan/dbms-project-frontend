@@ -15,13 +15,16 @@ import AdminNotification from "./Pages/NotificationSection/AdminNotification";
 import AddtoGallery from "./Pages/Gallery/AddtoGallery";
 import ContactForm from './Pages/ContactForm/ContactForm'
 import EventDetail from "./Pages/Gallery/EventDetail";
-import Programs from './Pages/OurProgramm/Programs'
-import About from "./Pages/About/About";
+import Testimonials from './Pages/Testimonials/Testimonials'
 import NotificationCards from './Pages/NotificationSection/NotificationCards'
+import Navbar from "./Pages/Home/Components/Navbar";
+import AccordionUsage from "./Pages/Home/Components/AccordionUsage";
+import Footer from "./Pages/Home/Components/Footer";
 
 function App() {
   return (
     <Router> 
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="dashboard/" element={<MiniDrawer />}>
@@ -33,6 +36,7 @@ function App() {
         <Route path="signup" element={<RegisterUser />} />
         <Route path="login" element={<LoginUser />} />
         <Route path="admin-login" element={<AdminLogin />} />
+        <Route path="faq" element={<AccordionUsage/>}/>
         <Route path="profile/" element={<UserProfile />}>
           <Route path="sendmail" element={<ContactForm/>} />
         </Route>
@@ -42,6 +46,7 @@ function App() {
         <Route path="notification" element={<NotificationCards/>}/>
         <Route path="notification/:title" element={<SingleNotificationPage/>}/>
       </Routes>
+      <Footer/>
     </Router>
   );
 }
