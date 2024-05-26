@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import LinearIndeterminate from './LinearIndeterminate';
-import {RegesterUser} from '../../Services/User_Services/User'
-import { Link } from 'react-router-dom';
-const RegisterUser = () => {
-const [isLoading, setIsLoading] = useState(false);
+import {loginAdmin} from '../../Services/Admin_services/Admin'
+import {useNavigate} from 'react-router-dom'
+import LinearIndeterminate from '../UserRegistration/LinearIndeterminate';
+const AdminLogin = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    Username: '',
     Email: '',
     Password: ''
   });
@@ -18,44 +18,30 @@ const [isLoading, setIsLoading] = useState(false);
     });
   };
 
-  const  handleSubmit = async(e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-   try {
-    setIsLoading(true);
-      const response = await RegesterUser(formData);
-      if(response.succuss===true){
-        alert("User Registered Successfully")     }
-   } catch (error) {
+    setIsLoading(true)
+    try {
+      const response = await loginAdmin(formData);
+      if(response.succuss!==true){
+        throw new Error(response.error);
+      }
+      navigate('/dashboard')
+
+    } catch (error) {
       console.error('Error:', error);
       alert("Something went wrong!")
-   }finally{
-      setIsLoading(false);
-   }
-    
-    
-   
+      
+    }finally {
+        setIsLoading(false)
+    }
   };
-
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
-
-        <h2 className="text-2xl mb-4">Register</h2>
+        <h2 className="text-2xl mb-4">Login</h2>
         <form onSubmit={handleSubmit} method='POST'>
-
-          <div className="mb-4">
-            <label htmlFor="username" className="block mb-2">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="Username"
-              placeholder="Enter your username"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-            />
-          </div>
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">Email</label>
             <input
@@ -63,7 +49,7 @@ const [isLoading, setIsLoading] = useState(false);
               id="email"
               name="Email"
               placeholder="Enter your email"
-              value={formData.email}
+              value={formData.Email}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
             />
@@ -75,27 +61,23 @@ const [isLoading, setIsLoading] = useState(false);
               id="password"
               name="Password"
               placeholder="Enter your password"
-              value={formData.password}
+              value={formData.Password}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
             />
           </div>
-
           <button
             type="submit"
-            className="w-full mb-2 py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
+            className="mb-1 w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
           >
-            {isLoading ? 'Loading...' : 'Register'}
+            {isLoading ? "Please wait... ": "Login"}
           </button>
-          {isLoading && <LinearIndeterminate/>}
+          {isLoading && <LinearIndeterminate className=''/>}
 
         </form>
-        <div className="mt-4 text-center">
-          <p>Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login</Link></p>
-        </div>
       </div>
     </div>
   );
 }
 
-export default RegisterUser;
+export default AdminLogin;
