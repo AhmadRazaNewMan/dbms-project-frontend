@@ -1,6 +1,6 @@
 async function RegesterUser(user){
     try {
-       const response = await fetch('http://localhost:8080/api/v1/user/create', {
+       const response = await fetch('localhost:8080/api/v1/user/create', {
            method: 'POST',
            headers: {
                'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ async function RegesterUser(user){
    
 async function loginUser(user){
     try {
-       const response = await fetch('http://localhost:8080/api/v1/user/login', {
+       const response = await fetch('localhost:8080/api/v1/user/login', {
            method: 'POST',
            headers: {
                'Content-Type': 'application/json',
